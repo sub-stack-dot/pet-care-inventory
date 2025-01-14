@@ -1,0 +1,138 @@
+.contact-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.contact-form,
+.map-container {
+  flex: 1;
+  text-align: left;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+    margin-top: 90px;
+    margin-bottom: 20px;
+    flex: 1;
+    font-size: 18px;
+}
+
+
+.contact-details p {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  font-size: 18px;
+  font-weight: 500; 
+  color: #333; 
+  margin: 0;
+  padding: 8px 12px; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-details p:hover {
+  background-color: #dbddd3;
+  color: #000; 
+  cursor: pointer;
+}
+.contact-details p a {
+  color: inherit; 
+  text-decoration: none;
+}
+.contact-details p a:hover {
+  color: #ecedeb; 
+}
+
+.contact-details p svg {
+  font-size: 20px; 
+  color: #555;
+}
+
+  .contact-details svg {
+    color: #dde1db;
+    font-size: 20px;
+  }
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+}
+
+input,
+textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #92af7b;
+  border-radius: 5px;
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: #5f7354;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+button:hover {
+  background-color: #51554d;
+}
+
+.map-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:100vh;
+  position: relative;
+}
+
+.map-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.map-info {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .contact-page {
+    flex-direction: column;
+  }
+}

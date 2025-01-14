@@ -1,0 +1,54 @@
+.Card1 {
+    background: linear-gradient(135deg, #ade78e, #3a5735); /* Subtle gradient background */
+    padding: 30px; /* Increased padding */
+    border-radius: 15px; /* Softer rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Elegant shadow */
+    margin: 50px auto; /* Centered and spaced */
+    width: 70%; /* Slightly narrower for a cleaner look */
+    max-width: 700px; /* Restrict max width */
+    color: #fff; /* White text for better contrast */
+    font-family: 'Arial', sans-serif; /* Modern font */
+    text-align: center; /* Centered text */
+    margin-left: 120px
+}
+
+.Card1 h1 {
+    font-size: 3rem; /* Larger title */
+    font-weight: 700; /* Bold and clean */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.Card1 p {
+    font-size: 1.1rem; /* Comfortable paragraph size */
+    line-height: 1.6; /* Improved readability */
+    margin-bottom: 20px; /* Space below paragraph */
+}
+
+.Card1 ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 10px 0;
+}
+
+.Card1 ul li {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.Card1 button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #68d87d;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease
+    
+}
+
+.Card1 button:hover {
+    background-color: #4d7942; /* Subtle hover effect */
+    transform: translateY(-3px); /* Lift effect */
+}
