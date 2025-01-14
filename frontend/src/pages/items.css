@@ -6,7 +6,7 @@
 }
 .items-page1 {
     background-color:#fff;
-    background-image: url("C:/Pet_Care_Inventory/petcare/public/bg2.png"); 
+    background-image: url("C:\Pet_Care_Inventory\petcare\frontend\public\bg2.png"); 
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -16,7 +16,7 @@
 }  
 .items-page2 {
     background-color:#fff;
-    background-image: url("C:/Pet_Care_Inventory/petcare/public/bg7.png"); 
+    background-image: url("C:\Pet_Care_Inventory\petcare\frontend\public\bg7.png"); 
     background-size:contain;
     background-position: center; 
     background-repeat: no-repeat; 

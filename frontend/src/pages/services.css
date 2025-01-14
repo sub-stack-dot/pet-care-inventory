@@ -19,7 +19,7 @@
   /* Left image side */
   .image-side {
     flex: 1; /* Take half the screen */
-    background: url('C:/Pet_Care_Inventory/petcare/public/bg11.jpg') no-repeat center center;
+    background: url('C:\Pet_Care_Inventory\petcare\frontend\public\bg11.jpg') no-repeat center center;
     background-size: cover;
   }
   
