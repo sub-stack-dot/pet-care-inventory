@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './signIn.css';
 import Validation from './LoginValidation';
 
@@ -9,14 +10,21 @@ export default function SignIn() {
     password: ''
   })
   const[errors,setErrors]=useState({})
+  const navigate = useNavigate();
 
   const handleInput=(event)=>{
-    setValues(prev=>({...prev,[event.target.name]:[event.target.value]}))
+    setValues(prev=>({...prev,[event.target.name]:event.target.value}));
   }
   const handleSubmit=(event)=>{
-    event.preventDefault(); 
-    setValues(Validation(values));
-  }
+    event.preventDefault();
+    const validationErrors=Validation(values) 
+    setErrors(validationErrors);
+
+    if (!validationErrors.email && !validationErrors.password) {
+      navigate('/Services.js'); // Redirect to dashboard or another page
+    }
+  };
+
   return (
     <div className="signin-container">
       <div className="signin-left">
