@@ -22,5 +22,5 @@ try {
     res.json("User created successfully");
 
 } catch (error) {
-    
+    next(error);
 }
