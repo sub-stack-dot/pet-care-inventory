@@ -22,15 +22,15 @@ const app=express();// for routing
 app.use(cors());// avoid sharing files between font & back
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.listen(process.env.BACKEND_PORT,()=>{
-    console.log('Server is running on port ${process.env.BACKEND_PORT}!');
+    console.log("Server is running on port ${process.env.BACKEND_PORT}!");
 })
 
 app.use("/api/auth/",authRoutes);
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode|| 500;
@@ -41,3 +41,4 @@ app.use((err,req,res,next)=>{
         message,
     });
 });
+

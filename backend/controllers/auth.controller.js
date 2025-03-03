@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import {errorHandler} from "../utils/error.js";
 
-export const signin = async(req, res, next)=>
+export const SignUp = async(req, res, next)=>
 {
     const{email, password}=req.body;
 
