@@ -17,6 +17,7 @@ export default function Navbar() {
     <a href="http://localhost:3000/Services">Services</a>
     <a href="http://localhost:3000/About">About</a>
     <a href="http://localhost:3000/Contact">Contact</a>
+    <a href="http://localhost:3000/Orders">Orders</a>
     <button className="nav-btn nav-close-btn" onClick={showNavbar}>
       <FaTimes/>
     </button>

@@ -1,39 +1,25 @@
 import React from 'react';
-import Card from"../components/Card";
+import Card from "../components/Card";
 import './home.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-  const navigate = useNavigate(); // Initialize the navigation function
+  const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    navigate('/SignIn'); // Navigate to the SignIn page
+    navigate('/SignIn');
   };
-  return (
-    <div className='home_background'>
-      <div>
-       <Card/>
-        {/* <div class="Card1">
-    <h1>Discover Premium Pet Care Solutions</h1>
-    <p>
-        Your one-stop destination for all pet care needs! Explore a curated selection of:
-    </p>
-    <ul>
-        <li>Essential medical supplies</li>
-        <li>Top-notch grooming products</li>
-        <li>Nutritious and high-quality pet food</li>
-      </ul>
-      <p>
-        Find your perfect match and bring home a new furry friend today!
-      </p>
-      
-      <button  id="getstartedbutton" onClick={handleGetStartedClick}>Get Started</button>
-      
-      </div> */}
 
-    
-       
+  return (
+    <div className="home-background">
+      <div className="home-content">
+        <Card
+          title="Discover Premium Pet Care Solutions"
+          description="Your one-stop destination for all pet care needs. Explore our curated selection of essential medical supplies, top-notch grooming products, and nutritious pet food."
+          buttonText="Get Started"
+          onButtonClick={handleGetStartedClick}
+        />
       </div>
     </div>
-  )
+  );
 }

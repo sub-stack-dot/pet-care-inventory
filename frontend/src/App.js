@@ -11,6 +11,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Orders from './pages/Orders';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/Items" element={<Items/>}/>
           <Route path="/SignIn" element={<SignIn/>}/>
           <Route path="/SignUp" element={<SignUp/>}/>
+          <Route path="/Orders" element={<Orders />} />
         </Routes>
       </div>
       <Footer/>
