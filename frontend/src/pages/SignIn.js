@@ -1,30 +1,16 @@
-import React,{useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 import './signIn.css';
-import Validation from './LoginValidation';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SignIn() {
-  const[values, setValues]=useState({
-    email: '',
-    password: ''
-  })
-  const[errors,setErrors]=useState({})
   const navigate = useNavigate();
 
-  const handleInput=(event)=>{
-    setValues(prev=>({...prev,[event.target.name]:event.target.value}));
-  }
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => { 
     event.preventDefault();
-    const validationErrors=Validation(values) 
-    setErrors(validationErrors);
-
-    if (!validationErrors.email && !validationErrors.password) {
-      navigate('/Services.js'); // Redirect to dashboard or another page
-    }
+    // Add authentication logic here if needed
+    navigate('/Services'); // Redirect to Services page
   };
-
   return (
     <div className="signin-container">
       <div className="signin-left">
@@ -37,18 +23,13 @@ export default function SignIn() {
       <div className="signin-right">
         <h1 className="signin-title">Sign In</h1><br/>
         <p className="signin-subtitle">Welcome Back!<br/> Enter your information below</p><br/>
-        <form className="signin-form" action="" onSubmit={handleSubmit}>
+        <form className="signin-form" onSubmit={handleSubmit}>
           <div className="form-group">
 
             <label>Email Address</label>
-            <input type="email" placeholder="Enter email address" name='email'
-            onChange={handleInput}  required />
-            {errors.email && <span classname='text-danger'>{errors.email}</span>}
+            <input type="email" placeholder="Enter email address" required />
             <label>Password</label>
-            <input type="password" placeholder="Enter password" name='password' 
-            onChange={handleInput} required />
-            {errors.password && <span classname='text-danger'>{errors.password}</span>}
-
+            <input type="password" placeholder="Enter password" required />
           </div>
             <div className='form-options'>
             <div className='remember_me'>
@@ -72,3 +53,4 @@ export default function SignIn() {
     </div>
   )
 }
+ 
