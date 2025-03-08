@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import productRoutes from './routes/productRoutes.js';
+import productRoutes from './routes/product.route.js';
 import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
