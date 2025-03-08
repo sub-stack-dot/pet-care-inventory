@@ -8,7 +8,6 @@ import path from "path";
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import productRoutes from './routes/product.route.js';
-import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 
@@ -35,7 +34,7 @@ app.use(bodyParser.json());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
+// app.use('/api/orders', orderRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

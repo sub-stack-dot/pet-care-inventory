@@ -9,12 +9,13 @@ const PetSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    breed: {
+    brand: {
         type: String,
         required: true,
     },
-    age: {
-        type: Number,
+    price: {
+        type: Number ,
+        required: true,
     }
 }, { timestamps: true });
 
