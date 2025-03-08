@@ -1,36 +1,56 @@
-import React, { useState } from 'react';
-import './orders.css';
-
-// Reuse product data from Items.js (you could move this to a separate file for sharing)
-const products = [
-  { id: 1, title: "Plant based softies", price: "Rs.450" },
-  { id: 2, title: "Chiken chonks", price: "Rs.550" },
-  { id: 3, title: "Chiken & Duck softies", price: "Rs.650" },
-  { id: 4, title: "Nibbles", price: "Rs.200" },
-  { id: 5, title: "Salmon chonks", price: "Rs.500" },
-  { id: 6, title: "Gnashers", price: "Rs.600" },
-  // Add groomingProducts and supplementProducts here if you want them included
-];
+import React, { useState, useEffect } from "react";
+import "./orders.css";
 
 const Orders = () => {
   const [order, setOrder] = useState({
-    product: '',
+    product: "",
     quantity: 1,
-    customerName: '',
-    contact: '',
+    customerName: "",
+    contact: "",
   });
+
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/products/get-all-products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error fetching products:", err));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrder((prev) => ({ ...prev, [name]: value }));
+    setOrder((prev) => ({
+      ...prev,
+      [name]: name === "quantity" ? Number(value) : value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you could send the order to a backend or log it
-    console.log('Order Submitted:', order);
-    alert('Order submitted successfully!');
-    setOrder({ product: '', quantity: 1, customerName: '', contact: '' }); // Reset form
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/orders/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(order),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit order");
+      }
+
+      alert("Order submitted successfully!");
+      setOrder({ product: "", quantity: 1, customerName: "", contact: "" });
+    } catch (error) {
+      alert("Error: " + error.message);
+      console.error("Order submission error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,7 +68,7 @@ const Orders = () => {
           >
             <option value="">-- Choose a Product --</option>
             {products.map((product) => (
-              <option key={product.id} value={product.title}>
+              <option key={product._id} value={product.title}>
                 {product.title} ({product.price})
               </option>
             ))}
@@ -92,8 +112,8 @@ const Orders = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          Submit Order
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? "Submitting..." : "Submit Order"}
         </button>
       </form>
     </div>
