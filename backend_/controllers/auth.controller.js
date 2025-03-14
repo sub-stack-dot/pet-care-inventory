@@ -4,42 +4,39 @@ import jwt from "jsonwebtoken";
 import User from "../models/users/User.model.js";
 
 export const signup = async (req, res, next) => {
-  const { firstname, lastname, fullname, email, password, phonenumber } =
+  const { fullname, email, password} =
     req.body;
 
-  if (!phonenumber || !password) {
+  if (!fullname || !email || !password) {
     next(errorHandler(400, "All fields are required"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
-    firstname,
-    lastname,
     fullname,
     email,
     password: hashedPassword,
-    phonenumber,
   });
 
   try {
     await newUser.save();
-    res.json("Signup successful");
+    res.status(201).json({message:"Signup successful"});
   } catch (error) {
     next(error);
   }
 };
 
 export const signin = async (req, res, next) => {
-  const { phonenumber, password, token2 } = req.body;
+  const { email, password} = req.body;
   const fcmtoken = token2;
 
-  if (!phonenumber || !password || phonenumber === "" || password === "") {
-    next(errorHandler(400, "All fields are required"));
+  if (!email|| !password) {
+    return next(errorHandler(400, "All fields are required"));
   }
 
   try {
-    const validUser = await User.findOne({ phonenumber });
+    const validUser = await User.findOne({ email});
     if (!validUser) {
       return next(errorHandler(404, "User not found"));
     }
@@ -48,8 +45,9 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(401, "Invalid password"));
     }
     const token = jwt.sign(
-      { id: validUser._id, isAdmin: validUser.isAdmin },
-      process.env.JWT_SECRET
+      { id: validUser._id},
+      process.env.JWT_SECRET,
+      // {expiresIn:"7d"}
     );
 
     const { password: pass, ...rest } = validUser._doc;
@@ -76,19 +74,22 @@ export const signin = async (req, res, next) => {
 export const updatePassword = async (req, res, next) => {
   const { password } = req.body;
 
-  req.body.password = bcryptjs.hashSync(req.body.password, 10);
+  if(!password){
+    return next(errorHandler(400,"Password is required"));
+  }
+  
   try {
+    // Hash new password
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    // Update user password
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
-      {
-        $set: {
-          password: req.body.password,
-        },
-      },
+      { $set: { password: hashedPassword } },
       { new: true }
     );
-    const { password, ...rest } = updatedUser._doc;
-    res.status(200).json(rest);
+
+    res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
     next(error);
   }
