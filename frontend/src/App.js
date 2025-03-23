@@ -7,11 +7,13 @@ import Solutions from './pages/Services';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Items from './pages/Items';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Orders from './pages/Orders';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
+
+
 
 
 function App() {
@@ -26,9 +28,11 @@ function App() {
           <Route path="/About" element={<About/>}/>
           <Route path="/Contact" element={<Contact/>}/>
           <Route path="/Items" element={<Items/>}/>
-          <Route path="/SignIn" element={<SignIn/>}/>
-          <Route path="/SignUp" element={<SignUp/>}/>
-          <Route path="/Orders" element={<Orders />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
+
+
         </Routes>
       </div>
       <Footer/>
