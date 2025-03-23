@@ -5,6 +5,10 @@
     align-items: center;
     min-height: 100vh;
     background-color: #f8f9fa;
+    background-image:url(C:\Pet_Care_Inventory\petcare\frontend\public\register.png) ;
+    background-size: contain; /* Changed from cover to contain */
+  background-position: left center;
+  background-repeat: no-repeat;
   }
   
   .registration-card {

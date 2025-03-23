@@ -5,6 +5,10 @@
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
+    background-image:url(C:\Pet_Care_Inventory\petcare\frontend\public\bg7.png) ;
+    background-size: cover; /* Changed from cover to contain */
+  background-position:center;
+  background-repeat: no-repeat;
   }
   
   .login-card {

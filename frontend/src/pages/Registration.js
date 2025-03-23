@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './registration.css'; // Create a separate CSS file for styling
 
 function Registration() {
-  const [formData, setFormData] = useState({ fullName: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ fullname: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -34,13 +34,13 @@ function Registration() {
         <h3 className="registration-header">Register</h3>
         <form onSubmit={handleSubmit} className="registration-form">
           <div className="input-group">
-            <label htmlFor="fullName" className="input-label">Full Name</label>
+            <label htmlFor="fullname" className="input-label">Full Name</label>
             <input
               type="text"
               className="input-field"
               id="fullname"
               name="fullname"
-              value={formData.fullname}
+              value={formData.fullName}
               onChange={handleChange}
               required
             />
