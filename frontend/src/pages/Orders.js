@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './orders.css';
+import React, { useState } from "react";
+import { createOrder } from "../services/orderService"; // Import axios API
+import "./orders.css";
 
-// Reuse product data from Items.js (you could move this to a separate file for sharing)
 const products = [
   { id: 1, title: "Plant based softies", price: "Rs.450" },
   { id: 2, title: "Chiken chonks", price: "Rs.550" },
@@ -9,43 +9,55 @@ const products = [
   { id: 4, title: "Nibbles", price: "Rs.200" },
   { id: 5, title: "Salmon chonks", price: "Rs.500" },
   { id: 6, title: "Gnashers", price: "Rs.600" },
-  // Add groomingProducts and supplementProducts here if you want them included
 ];
 
 const Orders = () => {
   const [order, setOrder] = useState({
-    product: '',
+    product: "",
     quantity: 1,
-    customerName: '',
-    contact: '',
+    customerName: "",
+    contact: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false); // Prevent multiple clicks
+
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrder((prev) => ({ ...prev, [name]: value }));
+    setOrder((prev) => ({
+      ...prev,
+      [name]: name === "quantity" ? parseInt(value) || 1 : value, // Ensure quantity is a number
+    }));
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you could send the order to a backend or log it
-    console.log('Order Submitted:', order);
-    alert('Order submitted successfully!');
-    setOrder({ product: '', quantity: 1, customerName: '', contact: '' }); // Reset form
+    setIsSubmitting(true);
+
+    try {
+      const response = await createOrder(order); // Use axios API call
+
+      if (response.status === 201) {
+        alert("🎉 Order submitted successfully!");
+        setOrder({ product: "", quantity: 1, customerName: "", contact: "" }); // Reset form
+      }
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert(`⚠️ Failed to submit order: ${error.response?.data?.error || "Unknown error"}`);
+    } finally {
+      setIsSubmitting(false); // Enable button again
+    }
   };
 
   return (
     <div className="orders-page">
-      <h2>Place Your Order</h2>
+      <h2>📦 Place Your Order</h2>
       <form className="order-form" onSubmit={handleSubmit}>
+        {/* Product Selection */}
         <div className="form-group">
           <label htmlFor="product">Select Product:</label>
-          <select
-            id="product"
-            name="product"
-            value={order.product}
-            onChange={handleChange}
-            required
-          >
+          <select id="product" name="product" value={order.product} onChange={handleChange} required>
             <option value="">-- Choose a Product --</option>
             {products.map((product) => (
               <option key={product.id} value={product.title}>
@@ -55,6 +67,7 @@ const Orders = () => {
           </select>
         </div>
 
+        {/* Quantity */}
         <div className="form-group">
           <label htmlFor="quantity">Quantity:</label>
           <input
@@ -68,6 +81,7 @@ const Orders = () => {
           />
         </div>
 
+        {/* Customer Name */}
         <div className="form-group">
           <label htmlFor="customerName">Your Name:</label>
           <input
@@ -80,6 +94,7 @@ const Orders = () => {
           />
         </div>
 
+        {/* Contact Number */}
         <div className="form-group">
           <label htmlFor="contact">Contact Number:</label>
           <input
@@ -92,8 +107,9 @@ const Orders = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          Submit Order
+        {/* Submit Button */}
+        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit Order"}
         </button>
       </form>
     </div>
