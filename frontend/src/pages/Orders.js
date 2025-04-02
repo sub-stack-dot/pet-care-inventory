@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createOrder } from "../services/orderService"; // Import axios API
+import { createOrder } from "./OrderServices"; // Import axios API
 import "./orders.css";
 
 const products = [
@@ -19,7 +19,7 @@ const Orders = () => {
     contact: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false); // Prevent multiple clicks
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -35,18 +35,24 @@ const Orders = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    if (!order.product) {
+      alert("Please select a product");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await createOrder(order); // Use axios API call
+      const response = await createOrder(order);
 
       if (response.status === 201) {
         alert("🎉 Order submitted successfully!");
-        setOrder({ product: "", quantity: 1, customerName: "", contact: "" }); // Reset form
+        setOrder({ product: "", quantity: 1, customerName: "", contact: "" });
       }
     } catch (error) {
       console.error("Error submitting order:", error);
-      alert(`⚠️ Failed to submit order: ${error.response?.data?.error || "Unknown error"}`);
+      alert(`⚠️ Failed to submit order: ${error.response?.data?.error || "An unknown error occurred."}`);
     } finally {
-      setIsSubmitting(false); // Enable button again
+      setIsSubmitting(false);
     }
   };
 
