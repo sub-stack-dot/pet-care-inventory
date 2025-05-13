@@ -4,15 +4,15 @@ import { createOrder, getOrders, updateOrder, deleteOrder } from "../controllers
 const router = express.Router();
 
 // Create an order (POST)
-router.post("/create-order", createOrder);
+router.post("/", createOrder);
 
 // Get all orders (GET)
-router.get("/orders", getOrders);
+router.get("/", getOrders);
 
 // Update an order (PUT)
-router.put("/update-order/:id", updateOrder);
+router.put("/:id", updateOrder);
 
 // Delete an order (DELETE)
-router.delete("/delete-order/:id", deleteOrder);
+router.delete("/:id", deleteOrder);
 
 export default router;

@@ -1,6 +1,6 @@
 import Order from "../models/orders/Order.model.js"; // Ensure the correct path
 
-// 📌 CREATE Order
+//  CREATE Order
 export const createOrder = async (req, res) => {
   try {
     const { product, quantity, customerName, contact } = req.body;
@@ -15,7 +15,7 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// 📌 READ Orders
+//  READ Orders
 export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find();
@@ -25,7 +25,7 @@ export const getOrders = async (req, res) => {
   }
 };
 
-// 📌 UPDATE Order
+//  UPDATE Order
 export const updateOrder = async (req, res) => {
   try {
     const { id } = req.params;
@@ -37,7 +37,7 @@ export const updateOrder = async (req, res) => {
   }
 };
 
-// 📌 DELETE Order (Make sure this function exists)
+//  DELETE Order (Make sure this function exists)
 export const deleteOrder = async (req, res) => {
   try {
     const { id } = req.params;

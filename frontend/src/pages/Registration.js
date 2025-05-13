@@ -40,7 +40,7 @@ function Registration() {
               className="input-field"
               id="fullname"
               name="fullname"
-              value={formData.fullName}
+              value={formData.fullname}
               onChange={handleChange}
               required
             />

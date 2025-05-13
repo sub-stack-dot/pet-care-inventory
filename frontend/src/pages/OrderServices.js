@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/orders"; // Adjust this to match your backend URL
+const API_URL = "http://localhost:3004/api/orders"; // Adjust this to match your backend URL
 
 // Create a new order
 export const createOrder = async (orderData) => {
